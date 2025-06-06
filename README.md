@@ -14,13 +14,22 @@ This module provides a Python implementation of a singly linked list along with 
 *   **Performance Measurement:** Includes a decorator (`measure_performance`) to time the execution of functions.
 *   **Comprehensive Test Suite:** Contains tests for each operation with assertions to verify correctness and measures performance on various dataset sizes.
 
-### Key Functions:
+### Key Components:
 
-*   `reverse_linked_list(head)`: Reverses the linked list starting from `head`.
-*   `merge_sort_linked_list(head)`: Sorts the linked list starting from `head` using merge sort.
-*   `merge_two_sorted_lists(list1, list2)`: Public interface for merging two sorted lists.
-*   `measure_performance(func, *args)`: Decorator/function to measure execution time.
-*   `run_comprehensive_tests()`: Executes the test suite.
+*   **Classes:**
+    *   `ListNode`: Data class for linked list nodes with value and next pointer.
+    *   `LinkedList`: Main class with initialization and utility methods.
+
+*   **Core Methods:**
+    *   `_build_from_list(values)`: Constructs linked list from Python list.
+    *   `to_list()`: Converts linked list back to Python list.
+    *   `reverse_linked_list(head)`: Reverses the linked list starting from `head`.
+    *   `merge_sort_linked_list(head)`: Sorts the linked list using merge sort.
+    *   `merge_two_sorted_lists(list1, list2)`: Merges two sorted lists.
+
+*   **Utility Functions:**
+    *   `measure_performance(func, *args)`: Times function execution.
+    *   `run_comprehensive_tests()`: Runs the test suite.
 
 ### Complexity Analysis Summary:
 
@@ -114,3 +123,155 @@ This script provides an implementation of Dijkstra's algorithm for finding the s
 *   **Dijkstra's Algorithm with Binary Heap:**
     *   Time Complexity: O((V + E) log V), where V is the number of vertices and E is the number of edges.
     *   Space Complexity: O(V) for distance and predecessor tables in the single-source algorithm. O(V^2) in the worst case for storing all-pairs paths in the result dictionary.
+
+## Tree Visualization Modules
+
+These modules provide functionality for visualizing binary trees, heaps, and tree traversal algorithms using NetworkX and Matplotlib.
+
+### Common Dependencies:
+*   `networkx`: Graph representation and visualization
+*   `matplotlib`: Advanced plotting and visualization
+*   `typing`: Type hints and sequence handling
+*   `numpy`: Array operations and color value generation
+*   `uuid`: Unique node identification
+*   `collections.deque`: Efficient queue implementation
+*   `time`: Performance measurements
+
+### Binary Heap Visualization (`heap_visualization.py`)
+
+This module provides the foundation for tree visualization using NetworkX and Matplotlib. It includes type-safe functions for heap operations, tree visualization, and testing capabilities.
+
+### Features:
+
+*   **Type-Safe Implementation:** Uses Python's type hints with proper handling of mutable and immutable sequences.
+*   **Heap Operations:**
+    *   **Build Heap:** Constructs a binary heap from an input array.
+    *   **Heapify:** Maintains the heap property by recursively adjusting node positions.
+    *   **Visualization:** Generates clear visual representations of the heap structure.
+*   **Tree Operations:**
+    *   **Node Creation:** Safe node instantiation with value checking.
+    *   **Tree Building:** Converts arrays into binary tree structures.
+*   **Error Handling:** Robust handling of edge cases including:
+    *   Empty arrays
+    *   Null node values
+    *   Type validation for input sequences
+
+### Key Functions:
+
+*   `build_heap_from_array(arr)`: Builds a heap from an input sequence, with proper type handling.
+*   `heapify(arr, length, root_idx)`: Maintains heap property by recursively adjusting nodes.
+*   `create_node(val)`: Creates a binary tree node with type checking.
+*   `build_tree(arr)`: Constructs a binary tree from an array with proper error handling.
+*   `add_edges(graph, node, pos)`: Recursively adds edges to the NetworkX graph.
+*   `visualize_heap(arr)`: Generates a visual representation of the heap using NetworkX.
+
+### Complexity Analysis:
+
+*   **Build Heap:**
+    *   Time Complexity: O(n)
+    *   Space Complexity: O(n)
+*   **Heapify:**
+    *   Time Complexity: O(log n)
+    *   Space Complexity: O(1)
+*   **Tree Building:**
+    *   Time Complexity: O(n)
+    *   Space Complexity: O(n)
+
+### Usage Example:
+
+```python
+from heap_visualization import visualize_heap
+
+# Create and visualize a heap
+array = [4, 10, 3, 5, 1]
+visualize_heap(array)  # Generates a visual representation of the heap
+```
+
+### Type Safety and Error Handling:
+
+*   Input validation for array parameters
+*   Proper handling of empty sequences
+*   Null checks for node values
+*   Clear type hints for function parameters and return values
+
+### Tree Traversal Extension (`tree_traversal_viz.py`)
+
+This extension of the heap visualization module adds support for visualizing tree traversal algorithms (DFS and BFS). It implements iterative approaches using stack and queue data structures, with color-coded visualization of traversal order.
+
+### Features:
+
+*   **Traversal Algorithms:**
+    *   **Depth-First Search (DFS):**
+        * Stack-based LIFO implementation
+        * Explores depth-first: root → left subtree → right subtree
+        * Memory efficient with stack size proportional to tree height
+    *   **Breadth-First Search (BFS):**
+        * Queue-based FIFO implementation
+        * Explores level-by-level
+        * Queue size proportional to tree width
+*   **Visual Enhancements:**
+    *   Color-coded traversal order using matplotlib's 'plasma' colormap
+    *   Dark-to-light color progression showing visit sequence
+    *   Interactive visualization with colorbar legend
+*   **Comprehensive Testing:**
+    *   Functional tests for traversal correctness
+    *   Edge case handling (empty trees, single nodes)
+    *   Performance analysis across different tree sizes
+*   **Flexible Tree Creation:**
+    *   Support for manual tree construction
+    *   Conversion from heap array representation
+    *   Sample tree generation for testing
+
+### Key Functions:
+
+*   `dfs(root)`: Performs iterative depth-first search traversal
+*   `bfs(root)`: Performs iterative breadth-first search traversal
+*   `visualize_traversal(root, traversal_type)`: Creates color-coded visualization
+*   `array_to_heap_tree(heap_array)`: Converts array to tree structure
+*   `generate_traversal_colors(num_nodes)`: Generates color scheme for visualization
+*   `performance_analysis()`: Measures and compares algorithm performance
+
+### Complexity Analysis:
+
+*   **Depth-First Search (DFS):**
+    *   Time Complexity: O(n) for visiting all nodes
+    *   Space Complexity: O(h) where h is tree height
+*   **Breadth-First Search (BFS):**
+    *   Time Complexity: O(n) for visiting all nodes
+    *   Space Complexity: O(w) where w is maximum tree width
+*   **Visualization:**
+    *   Time Complexity: O(n) for tree construction and rendering
+    *   Space Complexity: O(n) for storing graph structure
+
+### Usage Example:
+
+```python
+from tree_traversal_viz import create_sample_tree, visualize_traversal
+
+# Create a sample binary tree
+root = create_sample_tree()
+
+# Visualize DFS traversal
+dfs_nodes, dfs_time = visualize_traversal(root, "dfs")
+print(f"DFS traversal order: {[node.val for node in dfs_nodes]}")
+
+# Visualize BFS traversal
+bfs_nodes, bfs_time = visualize_traversal(root, "bfs")
+print(f"BFS traversal order: {[node.val for node in bfs_nodes]}")
+```
+
+### Implementation Details:
+
+*   **Iterative Approach:** Uses explicit stack/queue instead of recursion
+*   **Color Visualization:** Scientific colormap for intuitive traversal order
+*   **Performance Monitoring:** Built-in execution time measurement
+*   **Error Handling:** Robust handling of edge cases and invalid inputs
+*   **Testing Framework:** Test suite with assertions
+
+### Notes:
+
+*   Memory efficiency through iterative implementations
+*   Clear visualization of traversal patterns through color progression
+*   Test coverage and performance analysis
+*   Type-safe implementation with proper error handling
+*   Flexible support for different tree structures
