@@ -18,8 +18,6 @@ This module provides a Python implementation of a singly linked list along with 
 
 *   `reverse_linked_list(head)`: Reverses the linked list starting from `head`.
 *   `merge_sort_linked_list(head)`: Sorts the linked list starting from `head` using merge sort.
-*   `_get_middle(head)`: Helper function to find the middle node of a linked list.
-*   `_merge_sorted_lists(list1, list2)`: Helper function to merge two sorted linked lists.
 *   `merge_two_sorted_lists(list1, list2)`: Public interface for merging two sorted lists.
 *   `measure_performance(func, *args)`: Decorator/function to measure execution time.
 *   `run_comprehensive_tests()`: Executes the test suite.
@@ -75,9 +73,44 @@ python pythagorean_tree.py --profile --depth 8
 *   `PythagoreanTree`: The main class for generating and visualizing the fractal.
     *   `build_fractal()`: Generates the square elements and centerline segments recursively.
     *   `visualize()`: Handles plotting using Matplotlib based on selected style and colors.
-    *   `_calculate_triangle_apex()`: Calculates the position of the triangle apex for branching.
 
 ### Complexity:
 
 *   **Time Complexity:** O(2^n), where n is the recursion depth (due to the branching nature).
 *   **Space Complexity:** O(2^n) for storing all square elements in memory (O(n) if using lazy rendering, but current implementation stores all). Additional space for centerline segments and twig bases.
+
+## Dijkstra's Algorithm Implementation (`dijkstra_algorithm.py`)
+
+This script provides an implementation of Dijkstra's algorithm for finding the shortest paths in a weighted graph. It utilizes a binary heap for optimization and includes functionalities for graph creation, shortest path computation (single-source and all-pairs), visualization, and performance analysis.
+
+### Features:
+
+*   **Graph Representation:** Uses `networkx.DiGraph` to represent the directed weighted graph.
+*   **Binary Heap Optimization:** Implements Dijkstra's algorithm using `heapq` for efficient priority queue operations, resulting in improved time complexity.
+*   **Shortest Path Computation:**
+    *   Finds the shortest path between a single source and destination vertex (`dijkstra_heap`).
+    *   Computes shortest paths from a single source to all other reachable vertices (`dijkstra_all_pairs`).
+*   **Graph Visualization:** Plots the graph using `matplotlib` and `networkx`, with an option to highlight the shortest path.
+*   **Performance Analysis:** Includes a function to measure the execution time of the algorithm on random graphs of varying sizes.
+*   **Testing:** Contains assertion-based tests to verify the correctness of the algorithm's core functionalities.
+
+### Key Components:
+
+*   `DijkstraGraph` class:
+    *   `__init__()`: Initializes an empty directed graph.
+    *   `add_edge(source, target, weight)`: Adds a weighted edge to the graph, validating for non-negative weights.
+    *   `create_sample_graph()`: Creates a predefined sample graph for demonstration and testing.
+    *   `dijkstra_heap(src, dst, weight)`: Implements Dijkstra's algorithm to find the shortest path between two specific vertices.
+    *   `dijkstra_all_pairs(src, weight)`: Computes shortest paths from a source to all reachable vertices.
+    *   `plot_graph(highlighted_path, title, figsize)`: Visualizes the graph, optionally highlighting a given path.
+    *   `measure_performance(src, dst, iterations)`: Measures the execution time of `dijkstra_heap` over multiple iterations.
+*   `create_random_graph(num_vertices, edge_probability, max_weight)`: Generates a random weighted graph for performance testing.
+*   Test functions (`test_dijkstra_basic`, `test_dijkstra_no_path`, `test_dijkstra_single_vertex`, `test_negative_weight`, `test_all_pairs`): Verify different aspects of the Dijkstra implementation.
+*   `performance_analysis()`: Orchestrates performance testing on different graph sizes.
+*   `main()`: Demonstrates the usage of the `DijkstraGraph` class, runs tests, performs analysis, and visualizes the sample graph.
+
+### Complexity Analysis Summary:
+
+*   **Dijkstra's Algorithm with Binary Heap:**
+    *   Time Complexity: O((V + E) log V), where V is the number of vertices and E is the number of edges.
+    *   Space Complexity: O(V) for distance and predecessor tables in the single-source algorithm. O(V^2) in the worst case for storing all-pairs paths in the result dictionary.
