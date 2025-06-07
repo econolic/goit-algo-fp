@@ -8,8 +8,7 @@ import networkx as nx
 import matplotlib.pyplot as plt
 import time
 import random
-from typing import Dict, List, Tuple, Optional, Iterable, Any
-from collections import defaultdict
+from typing import Dict, List, Tuple, Optional, Any
 import numpy as np
 
 

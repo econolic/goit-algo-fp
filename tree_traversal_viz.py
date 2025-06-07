@@ -102,7 +102,7 @@ def generate_traversal_colors(num_nodes: int, colormap: str = 'plasma') -> List[
     
     # Generate color values from 0 to 1
     color_values = np.linspace(0, 1, num_nodes)
-    cmap = plt.cm.get_cmap(colormap)
+    cmap = plt.get_cmap(colormap)
     
     # Convert to hex colors
     colors = []

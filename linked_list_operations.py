@@ -4,33 +4,34 @@ Singly Linked List Implementation with Advanced Operations
 
 This module implements a singly linked list with operations for reversal, 
 sorting (merge sort), and merging two sorted lists.
-It includes comprehensive tests with assertions and performance measurements.
+It includes tests with assertions and performance measurements.
 
 """
 
-from typing import Optional, List, Tuple
+from typing import Optional, List, Tuple, TypeVar, Generic
 import time
 import random
 from dataclasses import dataclass
 
+T = TypeVar('T')
 
 @dataclass
-class ListNode:
+class ListNode(Generic[T]):
     """Node class for singly linked list."""
-    val: int
-    next: Optional['ListNode'] = None
+    val: T
+    next: Optional['ListNode[T]'] = None
 
 
-class LinkedList:
+class LinkedList(Generic[T]):
     """Singly linked list implementation with advanced operations."""
     
-    def __init__(self, values: Optional[List[int]] = None):
+    def __init__(self, values: Optional[List[T]] = None):
         """Initialize linked list from list of values."""
-        self.head: Optional[ListNode] = None
+        self.head: Optional[ListNode[T]] = None
         if values:
             self._build_from_list(values)
     
-    def _build_from_list(self, values: List[int]) -> None:
+    def _build_from_list(self, values: List[T]) -> None:
         """Build linked list from list of values."""
         if not values:
             return
@@ -41,7 +42,23 @@ class LinkedList:
             current.next = ListNode(val)
             current = current.next
     
-    def to_list(self) -> List[int]:
+    def add_node(self, value: T) -> None:
+        """Add a new node to the end of the list."""
+        new_node = ListNode(value)
+        if not self.head:
+            self.head = new_node
+            return
+            
+        current = self.head
+        while current.next:
+            current = current.next
+        current.next = new_node
+    
+    def append(self, value: T) -> None:
+        """Alias for add_node to maintain compatibility."""
+        self.add_node(value)
+    
+    def to_list(self) -> List[T]:
         """Convert linked list to Python list."""
         result = []
         current = self.head
@@ -52,7 +69,7 @@ class LinkedList:
     
     def __str__(self) -> str:
         """String representation of linked list."""
-        return " -> ".join(map(str, self.to_list())) + " -> None"
+        return " -> ".join(str(x) for x in self.to_list()) + " -> None"
 
 
 def reverse_linked_list(head: Optional[ListNode]) -> Optional[ListNode]:
@@ -343,30 +360,3 @@ def run_tests():
 
 if __name__ == "__main__":
     run_tests()
-    
-    print("\n" + "=" * 60)
-    print("COMPLEXITY ANALYSIS SUMMARY")
-    print("=" * 60)
-    print("1. Reverse Linked List:")
-    print("   - Time Complexity: O(n)")
-    print("   - Space Complexity: O(1)")
-    print("   - Performance: Linear growth with input size")
-    
-    print("\n2. Merge Sort:")
-    print("   - Time Complexity: O(n log n)")
-    print("   - Space Complexity: O(log n) - recursion stack")
-    print("   - Performance: Efficient for large datasets")
-    
-    print("\n3. Merge Two Sorted Lists:")
-    print("   - Time Complexity: O(n + m)")
-    print("   - Space Complexity: O(1)")
-    print("   - Performance: Linear in total input size")
-    
-    print("\n" + "=" * 60)
-    print("CONCLUSIONS")
-    print("=" * 60)
-    print("• Reverse operation is highly efficient with constant space usage")
-    print("• Merge sort provides optimal O(n log n) sorting for linked lists")
-    print("• Merging sorted lists is optimal with linear time complexity")
-    print("• All implementations are memory-efficient and production-ready")
-    print("• Performance scales predictably according to theoretical complexity")

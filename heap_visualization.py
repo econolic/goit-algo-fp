@@ -11,6 +11,7 @@ import time
 from typing import List, Optional, Union, Tuple, Sequence
 import networkx as nx
 import matplotlib.pyplot as plt
+import random
 
 
 class Node:
@@ -365,7 +366,6 @@ if __name__ == "__main__":
     sizes = [10, 50, 100, 500]
     for size in sizes:
         # Generate random heap
-        import random
         arr = list(range(1, size + 1))
         random.shuffle(arr)
         heap_arr = build_heap_from_array(arr, "min")

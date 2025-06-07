@@ -1,0 +1,17 @@
+# Basic Algorithms and Data Structures Project Dependencies
+# Requires Python 3.12 or higher
+
+# Visualization Dependencies
+matplotlib>=3.8.2      # Advanced plotting for fractals, graphs, and statistical visualizations
+networkx>=3.2.1       # Graph operations and visualization (Dijkstra's algorithm, tree structures)
+
+# Numerical and Computing Dependencies
+numpy>=1.26.3         # Array operations, random number generation for Monte Carlo simulation
+
+# Development and Type Checking
+typing-extensions>=4.9.0   # Enhanced type hints support for Python 3.12
+pytest>=8.0.0             # Testing framework for all algorithm implementations
+
+# Installation Instructions:
+# 1. Ensure Python 3.12+ is installed
+# 2. Run: pip install -r requirements.txt
